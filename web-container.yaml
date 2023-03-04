@@ -9,7 +9,6 @@
         update-cache: "yes"
         name: "tomcat9"
         state: "present"
-        notify: "enable tomcat9 services"
 
     - name: "clone the repository"
       git:
