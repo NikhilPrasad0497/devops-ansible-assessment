@@ -33,14 +33,14 @@
         dest: "/var/lib/tomcat9/webapps/addressbook.war"
         remote_src: "yes"
     
-    - name: "Stop tomcat"
+    - name: "Stop tomcat9"
       service: 
-        name: "tomcat"
+        name: "tomcat9"
         state: "stopped"
 
-    - name: "Start tomcat"
+    - name: "Start tomcat9"
       service: 
-        name: "tomcat"
+        name: "tomcat9"
         state: "started"
         enable: "yes"
     
