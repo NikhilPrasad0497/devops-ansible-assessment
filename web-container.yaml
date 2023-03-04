@@ -29,7 +29,7 @@
 
     - name: "Deploy WAR File"
       copy:
-        src: "{{gitdir}}"
+        remote_src: "{{gitdir}}"
         dest: "/var/lib/tomcat9/webapps/addressbook.war"
     
     - name: "Stop tomcat"
