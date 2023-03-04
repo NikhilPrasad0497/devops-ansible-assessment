@@ -4,6 +4,12 @@
   vars:
     gitdir: "/tmp/addressbook-project-1"
   tasks:
+    - name: "install maven"
+      apt:
+        update-cache: "yes"
+        name: "maven"
+        state: "present"
+        
     - name: "Install tomcat9"
       apt: 
         update-cache: "yes"
