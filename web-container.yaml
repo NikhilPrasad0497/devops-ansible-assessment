@@ -6,9 +6,10 @@
   tasks:
     - name: "Install tomcat9"
       apt: 
+        update-cache: "yes"
         name: "tomcat9"
-        notify: "Enable tomcat service"
         state: "present"
+        notify: "enable tomcat9 services"
 
     - name: "clone the repository"
       git:
@@ -30,12 +31,10 @@
       service: 
         name: "tomcat"
         state: "stopped"
-        
+
     - name: "Start tomcat"
       service: 
         name: "tomcat"
         state: "started"
         enable: "yes"
-    
-
     
