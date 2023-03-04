@@ -1,0 +1,41 @@
+- name: "Execute war file on Tomcat Server"
+  hosts: WEB
+  become: true
+  vars:
+    gitdir: "/tmp/addressbook-project-1"
+  tasks:
+    - name: "Install tomcat9"
+      apt: 
+        name: "tomcat9"
+        notify: "Enable tomcat service"
+        state: "present"
+
+    - name: "clone the repository"
+      git:
+        repo: "https://github.com/upshiftnow/addressbook"
+        dest: "{{gitdir}}"
+        version: "master"
+
+    - name: "compile the addressbook project"
+      command:
+        chdir: "{{gitdir}}"
+        cmd: "mvn package"
+
+    - name: "Deploy WAR File"
+      copy:
+        src: "{{gitdir}}"
+        dest: "/var/lib/tomcat9/webapps/addressbook.war"
+    
+    - name: "Stop tomcat"
+      service: 
+        name: "tomcat"
+        state: "stopped"
+        
+    - name: "Start tomcat"
+      service: 
+        name: "tomcat"
+        state: "started"
+        enable: "yes"
+    
+
+    
